@@ -32,14 +32,19 @@ import './editor.scss';
  */
 export default function Edit({ attributes, setAttributes }) {
 	console.log(attributes)
-	const {stlUrl, stlID} = attributes;
+	let {stlUrl, stlID} = attributes;
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={__('Style Settings', 'alert-block')}>
 					<MediaUpload
-						onSelect={ ( media ) => console.log( media ) }
+						onSelect={ ( media ) => {
+								console.log(media)
+								stlID = media.title;
+								stlUrl = media.url;
+							}
+						}
 						value={ stlID }
 						render={ ( { open } ) => (
 							<Button onClick={ open }>
