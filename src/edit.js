@@ -41,8 +41,7 @@ export default function Edit({ attributes, setAttributes }) {
 					<MediaUpload
 						onSelect={ ( media ) => {
 								console.log(media)
-								stlID = media.title;
-								stlUrl = media.url;
+								setAttributes({stlID: media.title, stlUrl: media.url})
 							}
 						}
 						value={ stlID }
@@ -55,11 +54,24 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 			<p { ...useBlockProps() }>
-				<RichText
-					tagName="p"
-					onChange={(value) => setAttributes({ stlUrl: value })}
-					value={stlUrl}
+				<MediaUpload
+					onSelect={ ( media ) => {
+							console.log(media)
+							setAttributes({stlID: media.title, stlUrl: media.url})
+						}
+					}
+					value={ stlID }
+					render={ ( { open } ) => (
+						<Button onClick={ open }>
+							メディアライブラリを開く
+						</Button>
+					) }
+
 				/>
+				<span
+
+				/>
+
 			</p>
 		</>
 	);
