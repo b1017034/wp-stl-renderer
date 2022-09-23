@@ -1,1 +1,4 @@
-
+- name: action-zip
+  uses: montudor/action-zip@v1.0.0
+  with:
+    args: unzip -qq wp-stl-renderer.zip -d ./
