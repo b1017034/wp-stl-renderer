@@ -41,7 +41,7 @@ export default function Edit({ attributes, setAttributes }) {
 					<MediaUpload
 						onSelect={ ( media ) => {
 								console.log(media)
-								setAttributes({stlID: media.title, stlUrl: media.url})
+								setAttributes({stlId: Math.random().toString(32).substring(2), stlUrl: media.url})
 							}
 						}
 						value={ stlID }
@@ -57,7 +57,7 @@ export default function Edit({ attributes, setAttributes }) {
 				<MediaUpload
 					onSelect={ ( media ) => {
 							console.log(media)
-							setAttributes({stlID: media.title, stlUrl: media.url})
+							setAttributes({stlId: Math.random().toString(32).substring(2), stlUrl: media.url})
 						}
 					}
 					value={ stlID }

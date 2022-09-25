@@ -11,14 +11,11 @@
 		"html": false
 	},
 	"attributes": {
-	  "stlID": {
+	  "stlId": {
 		"type": "string"
 	  },
 	  "stlUrl": {
-		"type": "string",
-		"source": "attribute",
-		"selector": "img",
-		"attribute": "src"
+		"type": "string"
 	  }
 	},
 	"textdomain": "stl-renderer",
