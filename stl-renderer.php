@@ -46,6 +46,6 @@ function stl_renderer_stl_renderer_render_callback( $attributes, $content, $bloc
 	wp_enqueue_script( 'three.min.js', plugins_url( 'lib/js/three.min.js', __FILE__ ));
 	wp_enqueue_script( 'STLLoader.js', plugins_url( 'lib/js/STLLoader.js', __FILE__ ));
 	wp_enqueue_script( 'OrbitControls.js', plugins_url( 'lib/js/OrbitControls.js', __FILE__ ));
-	wp_enqueue_script( 'stl_viewer.js', plugins_url( 'lib/js/stl_viewer.js', __FILE__ ));
+	wp_enqueue_script( 'stl_viewer.js', plugins_url( 'lib/js/STLHandler.js', __FILE__ ));
 	return ob_get_clean();
 }
