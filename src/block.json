@@ -16,10 +16,18 @@
 	  },
 	  "stlUrl": {
 		"type": "string"
+	  },
+	  "stlFileName": {
+		"type": "string"
+	  },
+	  "initZoom": {
+		"type": "number",
+		"default": 1.0
 	  }
 	},
 	"textdomain": "stl-renderer",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+  	"script": "file:../lib/js/STLHandler.js"
 }
