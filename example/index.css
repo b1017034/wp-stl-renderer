@@ -1,3 +1,4 @@
 .wp-block-stl-renderer-stl-model {
-	background-color: aqua;
+	/*background-color: aqua;*/
+	border: 1px solid #000;
 }
