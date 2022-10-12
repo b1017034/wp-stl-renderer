@@ -22,11 +22,6 @@ import { PanelBody, SelectControl, Button, RangeControl, __experimentalText as T
  */
 import './editor.scss';
 
-import '../lib/js/three.min'
-import '../lib/js/STLLoader.min'
-import '../lib/js/OrbitControls.min'
-import '../lib/js/STLHandler.min'
-
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -37,12 +32,20 @@ import '../lib/js/STLHandler.min'
  */
 export default function Edit({ attributes, setAttributes }) {
 	console.log(attributes)
-
 	let {stlUrl, stlId, stlFileName, initZoom} = attributes;
+	var stlHandler;
 
 	const setupPreview = function () {
-		console.log("preview")
-		const stlHandler = new STLHandler(stlUrl, stlId)
+		const elm = document.getElementById(stlId)
+		if (elm) {
+			const canvas = elm.firstChild
+			if(!canvas) {
+				stlHandler = new STLHandler(stlUrl, stlId)
+			} else {
+				console.log("remove")
+				console.log(stlHandler)
+			}
+		}
 	};
 
 	if(stlUrl && stlId) setupPreview();
@@ -66,6 +69,7 @@ export default function Edit({ attributes, setAttributes }) {
 					onSelect={ ( media ) => {
 							console.log(media)
 							setAttributes({stlId: Math.random().toString(32).substring(2), stlUrl: media.url, stlFileName: media.filename})
+							setupPreview()
 						}
 					}
 					value={ stlId }
@@ -82,6 +86,7 @@ export default function Edit({ attributes, setAttributes }) {
 				/>
 				<div
 					className={"wp-block-stl-renderer-stl-preview"}
+					style={{width: "500px", height: "500px"}}
 					id={stlId}
 				>
 				</div>

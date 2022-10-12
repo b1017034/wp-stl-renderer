@@ -5,10 +5,15 @@
  */
 
 .wp-block-stl-renderer-stl-renderer {
-  border: 1px dotted #000000;
+  //border: 1px dotted #000000;
   color: black;
 }
 
 .wp-block-stl-renderer-select-button {
   background-color: aqua;
+}
+
+.wp-block-stl-renderer-stl-preview {
+  width: 500px;
+  height: 500px;
 }

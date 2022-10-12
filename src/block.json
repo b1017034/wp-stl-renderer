@@ -29,5 +29,5 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-  	"script": "file:../lib/js/STLHandler.js"
+  	"script": "file:../lib/js/three.min.js"
 }
