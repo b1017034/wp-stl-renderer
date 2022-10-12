@@ -22,10 +22,10 @@ import { PanelBody, SelectControl, Button, RangeControl, __experimentalText as T
  */
 import './editor.scss';
 
-// import '../lib/js/three.min'
-// import '../lib/js/STLLoader'
-// import '../lib/js/OrbitControls'
-// import '../lib/js/STLHandler'
+import '../lib/js/three.min'
+import '../lib/js/STLLoader.min'
+import '../lib/js/OrbitControls.min'
+import '../lib/js/STLHandler.min'
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -41,10 +41,11 @@ export default function Edit({ attributes, setAttributes }) {
 	let {stlUrl, stlId, stlFileName, initZoom} = attributes;
 
 	const setupPreview = function () {
+		console.log("preview")
 		const stlHandler = new STLHandler(stlUrl, stlId)
 	};
 
-	// if(stlUrl && stlId) setupPreview();
+	if(stlUrl && stlId) setupPreview();
 
 	return (
 		<>
