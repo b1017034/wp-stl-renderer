@@ -7,5 +7,16 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.wp-block-stl-renderer-stl-renderer {
+  color: black;
+}
+
+.wp-block-stl-renderer-select-button {
+  background-color: aqua;
+}
+
+.wp-block-stl-renderer-stl-model {
+  border: 1px solid black;
+}
 
 /*# sourceMappingURL=style-index.css.map*/

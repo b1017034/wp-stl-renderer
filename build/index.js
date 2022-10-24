@@ -65,48 +65,78 @@ function Edit(_ref) {
     stlUrl,
     stlId,
     stlFileName,
-    initZoom
+    initZoom,
+    borderWidth,
+    borderHeight,
+    updated
   } = attributes;
   var stlHandler;
-
-  const setupPreview = function () {
+  jQuery(function () {
     const elm = document.getElementById(stlId);
 
     if (elm) {
       const canvas = elm.firstChild;
 
       if (!canvas) {
-        stlHandler = new STLHandler(stlUrl, stlId);
+        console.log("create");
+        stlHandler = new STLHandler(stlUrl, stlId, attributes);
       } else {
-        console.log("remove");
-        console.log(stlHandler);
+        if (updated) {
+          console.log("remove"); // console.log(elm)
+          // console.log(canvas)
+
+          elm.removeChild(canvas);
+          setAttributes({
+            updated: false
+          });
+          stlHandler = new STLHandler(stlUrl, stlId, attributes);
+        }
       }
     }
-  };
-
-  if (stlUrl && stlId) setupPreview();
+  });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('設定', 'alert-block')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: "\u30BA\u30FC\u30E0",
     onChange: number => {
       setAttributes({
-        initZoom: number
+        initZoom: number,
+        updated: true
       });
     },
     value: initZoom,
     step: 0.1,
     min: 1,
-    max: 3
+    max: 10
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: "Width",
+    value: borderWidth,
+    onChange: value => setAttributes({
+      borderWidth: value,
+      updated: true
+    }),
+    step: 1,
+    min: 1,
+    max: 1000
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: "Height",
+    value: borderHeight,
+    onChange: value => setAttributes({
+      borderHeight: value,
+      updated: true
+    }),
+    step: 1,
+    min: 1,
+    max: 1000
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
     onSelect: media => {
       console.log(media);
       setAttributes({
         stlId: Math.random().toString(32).substring(2),
         stlUrl: media.url,
-        stlFileName: media.filename
-      });
-      setupPreview();
+        stlFileName: media.filename,
+        updated: true
+      }); // setupPreview()
     },
     value: stlId,
     render: _ref2 => {
@@ -121,8 +151,8 @@ function Edit(_ref) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "wp-block-stl-renderer-stl-preview",
     style: {
-      width: "500px",
-      height: "500px"
+      width: borderWidth,
+      height: borderHeight
     },
     id: stlId
   })));
@@ -258,7 +288,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"stl-renderer/stl-renderer","version":"0.1.0","title":"Stl-renderer","category":"widgets","icon":"smiley","description":"Stl render","supports":{"html":false},"attributes":{"stlId":{"type":"string"},"stlUrl":{"type":"string"},"stlFileName":{"type":"string"},"initZoom":{"type":"number","default":1}},"textdomain":"stl-renderer","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","script":"file:../lib/js/three.min.js"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"stl-renderer/stl-renderer","version":"0.1.0","title":"Stl-renderer","category":"widgets","icon":"smiley","description":"Stl render","supports":{"html":false},"attributes":{"stlId":{"type":"string"},"stlUrl":{"type":"string"},"stlFileName":{"type":"string"},"initZoom":{"type":"number","default":1},"borderWidth":{"type":"integer","default":500},"borderHeight":{"type":"integer","default":400},"updated":{"type":"boolean","default":false}},"textdomain":"stl-renderer","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","script":"file:../lib/js/three.min.js"}');
 
 /***/ })
 

@@ -11,9 +11,20 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, InspectorControls, RichText, MediaUpload, MediaUploadCheck, PlainText } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, Button, RangeControl, __experimentalText as Text} from '@wordpress/components';
+import {
+	useBlockProps,
+	InspectorControls,
+	MediaUpload
+} from '@wordpress/block-editor';
 
+import {
+	PanelBody,
+	SelectControl,
+	Button,
+	RangeControl,
+	__experimentalText as Text,
+	TextControl
+} from '@wordpress/components';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -32,23 +43,28 @@ import './editor.scss';
  */
 export default function Edit({ attributes, setAttributes }) {
 	console.log(attributes)
-	let {stlUrl, stlId, stlFileName, initZoom} = attributes;
+	let {stlUrl, stlId, stlFileName, initZoom, borderWidth, borderHeight, updated} = attributes;
 	var stlHandler;
 
-	const setupPreview = function () {
+	jQuery(function () {
 		const elm = document.getElementById(stlId)
 		if (elm) {
 			const canvas = elm.firstChild
 			if(!canvas) {
-				stlHandler = new STLHandler(stlUrl, stlId)
+				console.log("create")
+				stlHandler = new STLHandler(stlUrl, stlId, attributes)
 			} else {
-				console.log("remove")
-				console.log(stlHandler)
+				if(updated) {
+					console.log("remove")
+					// console.log(elm)
+					// console.log(canvas)
+					elm.removeChild(canvas)
+					setAttributes({updated: false})
+					stlHandler = new STLHandler(stlUrl, stlId, attributes)
+				}
 			}
 		}
-	};
-
-	if(stlUrl && stlId) setupPreview();
+	})
 
 	return (
 		<>
@@ -56,22 +72,48 @@ export default function Edit({ attributes, setAttributes }) {
 				<PanelBody title={__('設定', 'alert-block')}>
 					<RangeControl
 						label='ズーム'
-						onChange={(number)=>{setAttributes({initZoom: number});}}
+						onChange={(number)=>{
+							setAttributes({
+								initZoom: number,
+								updated: true
+								});
+						}}
 						value={ initZoom }
 						step={0.1}
 						min={1}
-						max={3}
+						max={10}
+					/>
+					<RangeControl
+						label="Width"
+						value={ borderWidth }
+						onChange={ ( value ) => setAttributes({borderWidth: value, updated: true}) }
+						step={1}
+						min={1}
+						max={1000}
+
+					/>
+					<RangeControl
+						label="Height"
+						value={ borderHeight }
+						onChange={ ( value ) => setAttributes({borderHeight: value, updated: true}) }
+						step={1}
+						min={1}
+						max={1000}
 					/>
 				</PanelBody>
 			</InspectorControls>
 			<p { ...useBlockProps() }>
 				<MediaUpload
 					onSelect={ ( media ) => {
-							console.log(media)
-							setAttributes({stlId: Math.random().toString(32).substring(2), stlUrl: media.url, stlFileName: media.filename})
-							setupPreview()
-						}
-					}
+						console.log(media)
+						setAttributes({
+							stlId: Math.random().toString(32).substring(2),
+							stlUrl: media.url,
+							stlFileName: media.filename,
+							updated: true
+						})
+						// setupPreview()
+					}}
 					value={ stlId }
 					render={ ( { open } ) => (
 						<div>
@@ -86,21 +128,10 @@ export default function Edit({ attributes, setAttributes }) {
 				/>
 				<div
 					className={"wp-block-stl-renderer-stl-preview"}
-					style={{width: "500px", height: "500px"}}
+					style={{width: borderWidth, height: borderHeight}}
 					id={stlId}
 				>
 				</div>
-				{/*<div className="wp-block-stl-renderer-stl-model"*/}
-				{/*	 id={stlID}*/}
-				{/*	 style="width: 500px; height: 500px">*/}
-				{/*</div>*/}
-				{/*<script type="text/javascript">*/}
-				{/*	(function ($) {*/}
-				{/*		$(document).ready(function () {*/}
-				{/*			STLHandler(stlUrl, stlID);*/}
-				{/*		});*/}
-				{/*	}(jQuery));*/}
-				{/*</script>*/}
 			</p>
 		</>
 	);

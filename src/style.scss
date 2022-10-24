@@ -5,7 +5,14 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-//.wp-block-stl-renderer-stl-renderer {
-//  border: 1px dotted #000000;
-//  color: black;
-//}
+.wp-block-stl-renderer-stl-renderer {
+  color: black;
+}
+
+.wp-block-stl-renderer-select-button {
+  background-color: aqua;
+}
+
+.wp-block-stl-renderer-stl-model {
+  border: 1px solid black;
+}

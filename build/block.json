@@ -23,6 +23,18 @@
     "initZoom": {
       "type": "number",
       "default": 1
+    },
+    "borderWidth": {
+      "type": "integer",
+      "default": 500
+    },
+    "borderHeight": {
+      "type": "integer",
+      "default": 400
+    },
+    "updated": {
+      "type": "boolean",
+      "default": false
     }
   },
   "textdomain": "stl-renderer",
