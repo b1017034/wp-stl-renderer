@@ -43,17 +43,17 @@ function stl_renderer_stl_renderer_render_callback( $attributes, $content, $bloc
 	ob_start();
 	require plugin_dir_path( __FILE__ ) . 'build/template.php';
 
-	wp_enqueue_script( 'three.min.js', plugins_url( 'lib/js/three.min.js', __FILE__ ));
-	wp_enqueue_script( 'STLLoader.js', plugins_url( 'lib/js/STLLoader.js', __FILE__ ));
-	wp_enqueue_script( 'OrbitControls.js', plugins_url( 'lib/js/OrbitControls.js', __FILE__ ));
-	wp_enqueue_script( 'stl_viewer.js', plugins_url( 'lib/js/STLHandler.min.js', __FILE__ ));
+	wp_enqueue_script( 'three.min.js', plugins_url( 'lib/js/three.min.js', __FILE__ ), array(), filemtime(plugins_url( 'lib/js/three.min.js', __FILE__ )));
+	wp_enqueue_script( 'STLLoader.js', plugins_url( 'lib/js/STLLoader.js', __FILE__ ), array(), filemtime(plugins_url( 'lib/js/three.min.js', __FILE__ )));
+	wp_enqueue_script( 'OrbitControls.js', plugins_url( 'lib/js/OrbitControls.js', __FILE__ ), array(), filemtime(plugins_url( 'lib/js/three.min.js', __FILE__ )));
+	wp_enqueue_script( 'stl_viewer.js', plugins_url( 'lib/js/STLHandler.min.js', __FILE__ ), array(), filemtime(plugins_url( 'lib/js/three.min.js', __FILE__ )));
 	return ob_get_clean();
 }
 
 function stl_renderer_dependencies_import(){
-	wp_enqueue_script( 'three.min.js', plugins_url( 'lib/js/three.min.js', __FILE__ ));
-	wp_enqueue_script( 'STLLoader.js', plugins_url( 'lib/js/STLLoader.js', __FILE__ ));
-	wp_enqueue_script( 'OrbitControls.js', plugins_url( 'lib/js/OrbitControls.js', __FILE__ ));
-	wp_enqueue_script( 'stl_viewer.js', plugins_url( 'lib/js/STLHandler.min.js', __FILE__ ));
+	wp_enqueue_script( 'three.min.js', plugins_url( 'lib/js/three.min.js', __FILE__ ), array(), filemtime(plugins_url( 'lib/js/three.min.js', __FILE__ )));
+	wp_enqueue_script( 'STLLoader.js', plugins_url( 'lib/js/STLLoader.js', __FILE__ ), array(), filemtime(plugins_url( 'lib/js/three.min.js', __FILE__ )));
+	wp_enqueue_script( 'OrbitControls.js', plugins_url( 'lib/js/OrbitControls.js', __FILE__ ), array(), filemtime(plugins_url( 'lib/js/three.min.js', __FILE__ )));
+	wp_enqueue_script( 'stl_viewer.js', plugins_url( 'lib/js/STLHandler.min.js', __FILE__ ), array(), filemtime(plugins_url( 'lib/js/three.min.js', __FILE__ )));
 }
 add_action( 'enqueue_block_editor_assets', 'stl_renderer_dependencies_import' );

@@ -23,7 +23,8 @@ import {
 	Button,
 	RangeControl,
 	__experimentalText as Text,
-	TextControl
+	TextControl,
+	ColorPicker
 } from '@wordpress/components';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -43,7 +44,11 @@ import './editor.scss';
  */
 export default function Edit({ attributes, setAttributes }) {
 	console.log(attributes)
-	let {stlUrl, stlId, stlFileName, initZoom, borderWidth, borderHeight, updated} = attributes;
+	let {stlUrl, stlId, stlFileName, initZoom, initColor,
+		initRotationX, initRotationY, initRotationZ,
+		initLightX, initLightY, initLightZ,
+		borderWidth, borderHeight, updated} = attributes;
+	var stlHandler;
 	var stlHandler;
 
 	jQuery(function () {
@@ -98,6 +103,60 @@ export default function Edit({ attributes, setAttributes }) {
 						onChange={ ( value ) => setAttributes({borderHeight: value, updated: true}) }
 						step={1}
 						min={1}
+						max={1000}
+					/>
+					<Text>Model Color</Text>
+					<ColorPicker
+						color={initColor}
+						onChange={ (hex8Color) => setAttributes({initColor: hex8Color, updated: true})}
+						enableAlpha
+					/>
+					<RangeControl
+						label="Rotation X"
+						value={ initRotationX }
+						onChange={ ( value ) => setAttributes({initRotationX: value, updated: true}) }
+						step={1}
+						min={0}
+						max={360}
+					/>
+					<RangeControl
+						label="Rotation Y"
+						value={ initRotationY }
+						onChange={ ( value ) => setAttributes({initRotationY: value, updated: true}) }
+						step={1}
+						min={0}
+						max={360}
+					/>
+					<RangeControl
+						label="Rotation Z"
+						value={ initRotationZ }
+						onChange={ ( value ) => setAttributes({initRotationZ: value, updated: true}) }
+						step={1}
+						min={0}
+						max={360}
+					/>
+					<RangeControl
+						label="Light X"
+						value={ initLightX }
+						onChange={ ( value ) => setAttributes({initLightX: value, updated: true}) }
+						step={10}
+						min={-1000}
+						max={1000}
+					/>
+					<RangeControl
+						label="Light Y"
+						value={ initLightY }
+						onChange={ ( value ) => setAttributes({initLightY: value, updated: true}) }
+						step={10}
+						min={-1000}
+						max={1000}
+					/>
+					<RangeControl
+						label="Light Z"
+						value={ initLightZ }
+						onChange={ ( value ) => setAttributes({initLightZ: value, updated: true}) }
+						step={10}
+						min={-1000}
 						max={1000}
 					/>
 				</PanelBody>

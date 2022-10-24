@@ -24,6 +24,34 @@
 		"type": "number",
 		"default": 1.0
 	  },
+	  "initColor": {
+		"type": "string",
+		"default": "0xFD841F"
+	  },
+	  "initRotationX": {
+		"type": "integer",
+		"default": 0
+	  },
+	  "initRotationY": {
+		"type": "integer",
+		"default": 0
+	  },
+	  "initRotationZ": {
+		"type": "integer",
+		"default": 0
+	  },
+	  "initLightX": {
+		"type": "integer",
+		"default": 0
+	  },
+	  "initLightY": {
+		"type": "integer",
+		"default": 0
+	  },
+	  "initLightZ": {
+		"type": "integer",
+		"default": 0
+	  },
 	  "borderWidth": {
 		"type": "integer",
 		"default": 500
