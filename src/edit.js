@@ -116,24 +116,24 @@ export default function Edit({ attributes, setAttributes }) {
 						value={ initRotationX }
 						onChange={ ( value ) => setAttributes({initRotationX: value, updated: true}) }
 						step={1}
-						min={0}
-						max={360}
+						min={-180}
+						max={180}
 					/>
 					<RangeControl
 						label="Rotation Y"
 						value={ initRotationY }
 						onChange={ ( value ) => setAttributes({initRotationY: value, updated: true}) }
 						step={1}
-						min={0}
-						max={360}
+						min={-180}
+						max={180}
 					/>
 					<RangeControl
 						label="Rotation Z"
 						value={ initRotationZ }
 						onChange={ ( value ) => setAttributes({initRotationZ: value, updated: true}) }
 						step={1}
-						min={0}
-						max={360}
+						min={-180}
+						max={180}
 					/>
 					<RangeControl
 						label="Light X"
